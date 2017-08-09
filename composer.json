@@ -1,0 +1,18 @@
+{
+    "require": {
+        "heropoo/routing": "*",
+        "monolog/monolog": "*"
+    },
+    "autoload":{
+        "psr-4":{
+            "": "libraries/",
+            "app\\": "app/"
+        }
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}
