@@ -22,7 +22,7 @@ class LoginController
             return returnJson(400, "请输入正确的手机号码");
         }
 
-        if (preg_match("/^1\d{10}$/", $phone)) {
+        if (!preg_match("/^1\d{10}$/", $phone)) {
             return returnJson(400, "请输入正确的手机号码");
         }
 
