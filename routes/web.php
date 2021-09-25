@@ -17,3 +17,5 @@ $router->get('/', 'IndexController::index');
 //$router->get('/hello/{username}', function (Request $request, $username) {
 //    return $request->getMethod().'. Hello '. $username;
 //});
+
+$router->get('/docs/{project}', 'DocsController::show');
