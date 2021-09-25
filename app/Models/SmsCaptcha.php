@@ -7,6 +7,7 @@
 namespace App\Models;
 
 
+use Monolog\Logger;
 use Moon\Db\Table;
 
 
@@ -54,8 +55,11 @@ class SmsCaptcha extends Table
 
     public static function verifyCode($type, $phone, $code)
     {
-        $model = static::find()->where("phone=:phone and type=:type and status=0",
-            ['phone'=>$phone, 'type'=>$type])->order('id desc')->first();
+        $model = static::find()->where("phone=? and type=? and status=0",
+            [$phone, $type])->order('id desc')->first();
+        /** @var Logger $logger */
+        $logger = \App::$container->get('logger');
+        $logger->info(__METHOD__ . ':' . json_encode($model));
         if (empty($model)) {
             return false;
         }
