@@ -1,6 +1,7 @@
 {
     "require": {
         "ext-pdo": "*",
+        "ext-json": "*",
         "heropoo/moon": "^0.12",
         "heropoo/cache": "*",
         "heropoo/pagination": "*",
