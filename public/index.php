@@ -1,11 +1,13 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ttt
- * Date: 2017/8/9
- * Time: 13:19
+ * User: Heropoo
+ * Date: 2020/9/9
+ * Time: 20:30
  */
 
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-require '../app/bootstrap.php';
+use Moon\Application;
+
+$app = new Application(dirname(__DIR__));
+$app->run();

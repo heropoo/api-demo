@@ -6,7 +6,7 @@
  * Time: 13:44
  */
 
-namespace app\controllers;
+namespace App\Controllers;
 
 
 class ApiController
