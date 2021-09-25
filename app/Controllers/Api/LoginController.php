@@ -28,7 +28,7 @@ class LoginController
         }
 
         $code = mt_rand(100000, 999999);
-        $res = SmsCaptcha::create($phone, 'login', $code);
+        $res = SmsCaptcha::create('login', $phone, $code);
         if (!$res) {
             return returnJson(500, '发送失败');
         }
