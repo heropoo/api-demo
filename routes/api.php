@@ -16,3 +16,4 @@ $router->get('/test', function () {
 
 
 $router->post('/login-captcha', 'LoginController::loginCaptcha');
+$router->post('/login', 'LoginController::login');

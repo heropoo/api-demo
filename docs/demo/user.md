@@ -1,9 +1,9 @@
 ## 1. 用户账号
 
-### 获取注册验证码
+### 获取注册/登录验证码
 * 请求方式 `POST`
 * 请求地址 `/api/login-captcha`
-* 用途 `用户注册时拉取验证码`
+* 用途 `用户注册/登录时拉取验证码`
 * 请求参数 
 
     | 名称 | 类型 | 注释 |
@@ -19,63 +19,17 @@
 }
 ```
 
-### 注册
+
+### 注册/登录
 * 请求方式 `POST`
-* 请求地址 `/user/register`
+* 请求地址 `/api/login`
 * 用途 
 * 请求参数 
 
     | 名称 | 类型 | 注释 |
     |:-------------:|:-------------:|:-------------|
-    | phone | string | 手机号 |
-    | code | string | 验证码 |
-    | password | string | 密码 |
-    | source | string | 来源 0：默认 |  
-
-* 返回结果
-```json
-{
-    "code": 0,
-    "message": "注册成功",
-    "data": {
-        "token": "br293s6i0p63m4i5lqshqh2c02"
-    }
-}
-```
-
-### 获取登陆验证码
-* 请求方式 `POST`
-* 请求地址 `http://api.example.com/user/login-get-code`
-* 用途 
-* 请求参数 
-
-    | 名称 | 类型 | 注释 |
-    |:-------------:|:-------------:|:-------------|
-    | phone | string | 手机号 |
-
-* 返回结果
-```json
-{
-    "code": 0,
-    "message": "成功获取验证码",
-    "data": {
-        "item": []
-    }
-}
-```
-
-### 登陆
-* 请求方式 `POST`
-* 请求地址 `http://api.example.com/user/login`
-* 用途 
-* 请求参数 
-
-    | 名称 | 类型 | 注释 |
-    |:-------------:|:-------------:|:-------------|
-    | username | string | 用户名，手机注册的为手机号 |
+    | phone | string | 用户名，手机注册的为手机号 |
     | code | string | 短信验证码 |
-    | source | string | 来源 0：默认 |
-    | deviceId | string | 设备id |
 
 * 返回结果
 ```json
@@ -83,45 +37,15 @@
     "code": 0,
     "message": "登录成功",
     "data": {
-        "item": {
-            "uid": 89669882,
-            "username": "13812341234",
-            "realname": "",
-            "status": 1
-        }
-    }
-}
-```
-
-### 快速登陆
-* 请求方式 `POST`
-* 请求地址 `http://api.example.com/user/quick-login`
-* 用途 
-* 请求参数 
-
-    | 名称 | 类型 | 注释 |
-    |:-------------:|:-------------:|:-------------|
-    | SESSIONID | string | session id |
-
-* 返回结果
-```json
-{
-    "code": 0,
-    "message": "登录成功",
-    "data": {
-        "item": {
-            "uid": 89669882,
-            "username": "13812341234",
-            "realname": "",
-            "status": 1
-        }
+       "token": "12312312312dfdsfsdf",
+       "is_register": true   // 新用户为true 
     }
 }
 ```
 
 ### 退出
 * 请求方式 `GET`
-* 请求地址 `http://api.example.com/user/logout`
+* 请求地址 `/api/login`
 * 用途 
 * 请求参数 
 * 返回结果
@@ -129,9 +53,7 @@
 {
     "code": 0,
     "message": "成功退出",
-    "data": {
-        "result": true
-    }
+    "data": {}
 }
 ```
 

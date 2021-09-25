@@ -1036,11 +1036,11 @@ body .markdown-body
 <body>
 <div class="markdown-body">
     <h2 id="MS4g55So5oi36LSm5Y+3">1. &#29992;&#25143;&#36134;&#21495;</h2>
-<h3 id="6I635Y+W5rOo5YaM6aqM6K+B56CB">&#33719;&#21462;&#27880;&#20876;&#39564;&#35777;&#30721;</h3>
+<h3 id="6I635Y+W5rOo5YaML+eZu+W9lemqjOivgeeggQ==">&#33719;&#21462;&#27880;&#20876;/&#30331;&#24405;&#39564;&#35777;&#30721;</h3>
 <ul>
 <li>&#35831;&#27714;&#26041;&#24335; <code>POST</code></li>
 <li>&#35831;&#27714;&#22320;&#22336; <code>/api/login-captcha</code></li>
-<li>&#29992;&#36884; <code>&#29992;&#25143;&#27880;&#20876;&#26102;&#25289;&#21462;&#39564;&#35777;&#30721;</code></li>
+<li>&#29992;&#36884; <code>&#29992;&#25143;&#27880;&#20876;/&#30331;&#24405;&#26102;&#25289;&#21462;&#39564;&#35777;&#30721;</code></li>
 <li><p>&#35831;&#27714;&#21442;&#25968; </p>
 <table>
 <thead>
@@ -1060,10 +1060,10 @@ body .markdown-body
 </code></pre>
 </li>
 </ul>
-<h3 id="5rOo5YaM">&#27880;&#20876;</h3>
+<h3 id="5rOo5YaML+eZu+W9lQ==">&#27880;&#20876;/&#30331;&#24405;</h3>
 <ul>
 <li>&#35831;&#27714;&#26041;&#24335; <code>POST</code></li>
-<li>&#35831;&#27714;&#22320;&#22336; <code>/user/register</code></li>
+<li>&#35831;&#27714;&#22320;&#22336; <code>/api/login</code></li>
 <li>&#29992;&#36884; </li>
 <li><p>&#35831;&#27714;&#21442;&#25968; </p>
 <table>
@@ -1071,65 +1071,8 @@ body .markdown-body
 <tr><th align="center">&#21517;&#31216;</th><th align="center">&#31867;&#22411;</th><th align="left">&#27880;&#37322;</th></tr>
 </thead>
 <tbody>
-<tr><td align="center">phone</td><td align="center">string</td><td align="left">&#25163;&#26426;&#21495;</td></tr>
-<tr><td align="center">code</td><td align="center">string</td><td align="left">&#39564;&#35777;&#30721;</td></tr>
-<tr><td align="center">password</td><td align="center">string</td><td align="left">&#23494;&#30721;</td></tr>
-<tr><td align="center">source</td><td align="center">string</td><td align="left">&#26469;&#28304; 0&#65306;&#40664;&#35748;</td></tr>
-</tbody>
-</table>
-</li>
-<li><p>&#36820;&#22238;&#32467;&#26524;</p>
-<pre><code class="language-json">{
-  "code": 0,
-  "message": "&#27880;&#20876;&#25104;&#21151;",
-  "data": {
-      "token": "br293s6i0p63m4i5lqshqh2c02"
-  }
-}
-</code></pre>
-</li>
-</ul>
-<h3 id="6I635Y+W55m76ZmG6aqM6K+B56CB">&#33719;&#21462;&#30331;&#38470;&#39564;&#35777;&#30721;</h3>
-<ul>
-<li>&#35831;&#27714;&#26041;&#24335; <code>POST</code></li>
-<li>&#35831;&#27714;&#22320;&#22336; <code>http://api.example.com/user/login-get-code</code></li>
-<li>&#29992;&#36884; </li>
-<li><p>&#35831;&#27714;&#21442;&#25968; </p>
-<table>
-<thead>
-<tr><th align="center">&#21517;&#31216;</th><th align="center">&#31867;&#22411;</th><th align="left">&#27880;&#37322;</th></tr>
-</thead>
-<tbody>
-<tr><td align="center">phone</td><td align="center">string</td><td align="left">&#25163;&#26426;&#21495;</td></tr>
-</tbody>
-</table>
-</li>
-<li><p>&#36820;&#22238;&#32467;&#26524;</p>
-<pre><code class="language-json">{
-  "code": 0,
-  "message": "&#25104;&#21151;&#33719;&#21462;&#39564;&#35777;&#30721;",
-  "data": {
-      "item": []
-  }
-}
-</code></pre>
-</li>
-</ul>
-<h3 id="55m76ZmG">&#30331;&#38470;</h3>
-<ul>
-<li>&#35831;&#27714;&#26041;&#24335; <code>POST</code></li>
-<li>&#35831;&#27714;&#22320;&#22336; <code>http://api.example.com/user/login</code></li>
-<li>&#29992;&#36884; </li>
-<li><p>&#35831;&#27714;&#21442;&#25968; </p>
-<table>
-<thead>
-<tr><th align="center">&#21517;&#31216;</th><th align="center">&#31867;&#22411;</th><th align="left">&#27880;&#37322;</th></tr>
-</thead>
-<tbody>
-<tr><td align="center">username</td><td align="center">string</td><td align="left">&#29992;&#25143;&#21517;&#65292;&#25163;&#26426;&#27880;&#20876;&#30340;&#20026;&#25163;&#26426;&#21495;</td></tr>
+<tr><td align="center">phone</td><td align="center">string</td><td align="left">&#29992;&#25143;&#21517;&#65292;&#25163;&#26426;&#27880;&#20876;&#30340;&#20026;&#25163;&#26426;&#21495;</td></tr>
 <tr><td align="center">code</td><td align="center">string</td><td align="left">&#30701;&#20449;&#39564;&#35777;&#30721;</td></tr>
-<tr><td align="center">source</td><td align="center">string</td><td align="left">&#26469;&#28304; 0&#65306;&#40664;&#35748;</td></tr>
-<tr><td align="center">deviceId</td><td align="center">string</td><td align="left">&#35774;&#22791;id</td></tr>
 </tbody>
 </table>
 </li>
@@ -1138,43 +1081,8 @@ body .markdown-body
   "code": 0,
   "message": "&#30331;&#24405;&#25104;&#21151;",
   "data": {
-      "item": {
-          "uid": 89669882,
-          "username": "13812341234",
-          "realname": "",
-          "status": 1
-      }
-  }
-}
-</code></pre>
-</li>
-</ul>
-<h3 id="5b+r6YCf55m76ZmG">&#24555;&#36895;&#30331;&#38470;</h3>
-<ul>
-<li>&#35831;&#27714;&#26041;&#24335; <code>POST</code></li>
-<li>&#35831;&#27714;&#22320;&#22336; <code>http://api.example.com/user/quick-login</code></li>
-<li>&#29992;&#36884; </li>
-<li><p>&#35831;&#27714;&#21442;&#25968; </p>
-<table>
-<thead>
-<tr><th align="center">&#21517;&#31216;</th><th align="center">&#31867;&#22411;</th><th align="left">&#27880;&#37322;</th></tr>
-</thead>
-<tbody>
-<tr><td align="center">SESSIONID</td><td align="center">string</td><td align="left">session id</td></tr>
-</tbody>
-</table>
-</li>
-<li><p>&#36820;&#22238;&#32467;&#26524;</p>
-<pre><code class="language-json">{
-  "code": 0,
-  "message": "&#30331;&#24405;&#25104;&#21151;",
-  "data": {
-      "item": {
-          "uid": 89669882,
-          "username": "13812341234",
-          "realname": "",
-          "status": 1
-      }
+     "token": "12312312312dfdsfsdf",
+     "is_register": true   // &#26032;&#29992;&#25143;&#20026;true 
   }
 }
 </code></pre>
@@ -1183,15 +1091,13 @@ body .markdown-body
 <h3 id="6YCA5Ye6">&#36864;&#20986;</h3>
 <ul>
 <li>&#35831;&#27714;&#26041;&#24335; <code>GET</code></li>
-<li>&#35831;&#27714;&#22320;&#22336; <code>http://api.example.com/user/logout</code></li>
+<li>&#35831;&#27714;&#22320;&#22336; <code>/api/login</code></li>
 <li>&#29992;&#36884; </li>
 <li>&#35831;&#27714;&#21442;&#25968; </li>
 <li>&#36820;&#22238;&#32467;&#26524;<pre><code class="language-json">{
   "code": 0,
   "message": "&#25104;&#21151;&#36864;&#20986;",
-  "data": {
-      "result": true
-  }
+  "data": {}
 }
 </code></pre>
 </li>
