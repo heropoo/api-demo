@@ -13,3 +13,6 @@ $router->get('/test', function () {
 ////$router->get('{version:v\d+}/{aid:\d+}/user/list', function ($version, $aid) {
 //    return new JsonResponse(['code' => 0, 'msg' => 'ok', 'data' => ['version' => $version, 'aid' => $aid]]);
 //}, 'user.list');
+
+
+$router->get('/login-captcha', 'LoginController::loginCaptcha');
