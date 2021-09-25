@@ -15,4 +15,4 @@ $router->get('/test', function () {
 //}, 'user.list');
 
 
-$router->get('/login-captcha', 'LoginController::loginCaptcha');
+$router->post('/login-captcha', 'LoginController::loginCaptcha');

@@ -7,21 +7,26 @@
 namespace App\Controllers\Api;
 
 
+use App\Models\SmsCaptcha;
+
 class LoginController
 {
     public function loginCaptcha()
     {
         $phone = $_POST['phone'] ?? '';
-        if(empty($phone)){
+        if (empty($phone)) {
             return returnJson(400, "请输入正确的手机号码");
         }
 
-        if (preg_match("/^1\d{10}$/")) {
+        if (preg_match("/^1\d{10}$/", $phone)) {
             return returnJson(400, "请输入正确的手机号码");
         }
 
+        $code = mt_rand(100000, 999999);
+        $res = SmsCaptcha::create($phone, 'login', $code);
+        if (!$res) {
+            return returnJson(500, '发送失败');
+        }
         return returnJson();
     }
-
-
 }

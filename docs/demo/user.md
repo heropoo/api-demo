@@ -2,7 +2,7 @@
 
 ### 获取注册验证码
 * 请求方式 `POST`
-* 请求地址 `/user/get-vcode`
+* 请求地址 `/api/login-captcha`
 * 用途 `用户注册时拉取验证码`
 * 请求参数 
 
