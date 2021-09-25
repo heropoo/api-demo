@@ -2,7 +2,7 @@
 
 ### 获取注册验证码
 * 请求方式 `POST`
-* 请求地址 `http://api.example.com/user/reg-get-code`
+* 请求地址 `/user/get-vcode`
 * 用途 `用户注册时拉取验证码`
 * 请求参数 
 
@@ -15,15 +15,13 @@
 {
     "code": 0,
     "message": "成功获取验证码",
-    "data": {
-        "item": []
-    }
+    "data": {}
 }
 ```
 
 ### 注册
 * 请求方式 `POST`
-* 请求地址 `http://api.example.com/user/register`
+* 请求地址 `/user/register`
 * 用途 
 * 请求参数 
 
@@ -31,7 +29,6 @@
     |:-------------:|:-------------:|:-------------|
     | phone | string | 手机号 |
     | code | string | 验证码 |
-    | invite_code | string | 邀请码,6位字符 |
     | password | string | 密码 |
     | source | string | 来源 0：默认 |  
 
@@ -41,21 +38,7 @@
     "code": 0,
     "message": "注册成功",
     "data": {
-        "item": {
-            "uid": 89669882,
-            "username": "13812341234",
-            "realname": "",
-            "id_card": "",
-            "real_verify_status": 0,
-            "user_sign": null,
-            "real_pay_pwd_status": 0,
-            "real_work_status": 0,
-            "real_contact_status": 0,
-            "real_zmxy_status": 0,
-            "real_bind_bank_card_status": 0,
-            "sessionid": "br293s6i0p63m4i5lqshqh2c02",
-            "card_list": []
-        }
+        "token": "br293s6i0p63m4i5lqshqh2c02"
     }
 }
 ```

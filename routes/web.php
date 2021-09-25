@@ -18,4 +18,4 @@ $router->get('/', 'IndexController::index');
 //    return $request->getMethod().'. Hello '. $username;
 //});
 
-$router->get('/docs/{project}', 'DocsController::show');
+$router->get('/docs/{page}', 'DocsController::show');

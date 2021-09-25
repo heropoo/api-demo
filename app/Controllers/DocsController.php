@@ -6,9 +6,14 @@ use Moon\WriteDoc\WriteDoc;
 
 class DocsController
 {
-    public function show()
+    public function show($page)
     {
-        $writer = new WriteDoc(__DIR__.'/../../docs');
-        echo $writer->show('demo', 'index');
+        $rootDir = realpath(dirname(__DIR__ . '/../../..'));
+        $writer = new WriteDoc($rootDir, [
+            'docs_path' => $rootDir . '/docs',
+            'dist_path' => $rootDir . '/storage/docs-dist',
+            'tmp_path' => $rootDir . '/runtime/tmp/docs_tmp',
+        ]);
+        return $writer->show('demo', $page);
     }
 }
