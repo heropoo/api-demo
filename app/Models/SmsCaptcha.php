@@ -54,7 +54,8 @@ class SmsCaptcha extends Table
 
     public static function verifyCode($type, $phone, $code)
     {
-        $model = static::find()->where("phone=? and type=? and status=0", [$phone, $type])->first();
+        $model = static::find()->where("phone=:phone and type=:type and status=0",
+            ['phone'=>$phone, 'type'=>$type])->first();
         if (empty($model)) {
             return false;
         }
