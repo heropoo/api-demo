@@ -33,6 +33,16 @@ func handleGetLoginCaptcha(c *gin.Context) {
 		return
 	}
 
+	_, err := getDB()
+	if err != nil {
+		println(err.Error())
+		c.JSON(http.StatusOK, gin.H{
+			"code":    500,
+			"message": "获取失败",
+		})
+		return
+	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"code":    0,
 		"message": "success",

@@ -35,12 +35,15 @@ func getDB() (*sql.DB, error) {
 
 	config, _ := getConfig("./config.yaml")
 
-	dsn := config.DB.Username + ":" + config.DB.Password + "@tcp(" + config.DB.Host + ":" + string(config.DB.Port) + ")/" + config.DB.DBName + "?charset=utf8mb4&parseTime=True"
-	fmt.Println(dsn)
+	dsn := config.DB.Username + ":" + config.DB.Password + "@tcp(" + config.DB.Host + ":" + fmt.Sprint(config.DB.Port) + ")/" + config.DB.DBName + "?charset=utf8mb4&parseTime=True"
+	//fmt.Println(dsn)
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		return db, err
 	}
+
+	//fmt.Println(db)
+
 	// 尝试与数据库建立连接（校验dsn是否正确）
 	err = db.Ping()
 	if err != nil {
