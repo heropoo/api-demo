@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"math/rand"
 	"net/http"
 	"regexp"
@@ -33,7 +34,7 @@ func handleGetLoginCaptcha(c *gin.Context) {
 		return
 	}
 
-	_, err := getDB()
+	db, err := getDB()
 	if err != nil {
 		println(err.Error())
 		c.JSON(http.StatusOK, gin.H{
@@ -42,6 +43,24 @@ func handleGetLoginCaptcha(c *gin.Context) {
 		})
 		return
 	}
+
+	sqlStr := "insert into tt_sms_captcha(type, phone, code, status, created_at, updated_at)"
+	sqlStr += "values (?,?,?,?,?,?)"
+	nowTime := time.Now().Format("2006-01-02 15:04:05")
+	_, err = db.Exec(sqlStr, "login", phone, captcha.Vcode, 0, nowTime, nowTime)
+	if err != nil {
+		fmt.Printf("insert failed, err:%v\n", err)
+		c.JSON(http.StatusOK, gin.H{
+			"code":    501,
+			"message": "获取失败",
+		})
+		return
+	}
+	// lastInsertId, err := ret.LastInsertId() // 新插入数据的id
+	// if err != nil {
+	// 	fmt.Printf("get lastinsert ID failed, err:%v\n", err)
+	// 	return
+	// }
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    0,
@@ -73,8 +92,89 @@ func handleLogin(c *gin.Context) {
 		return
 	}
 
+	db, err := getDB()
+	if err != nil {
+		println(err.Error())
+		c.JSON(http.StatusOK, gin.H{
+			"code":    500,
+			"message": "登录失败",
+		})
+		return
+	}
+
+	var captcha SmsCaptcha
+
+	sqlStr := "select id,code from tt_sms_captcha where type=? and phone=? and status=0 order by id desc limit 1"
+	err = db.QueryRow(sqlStr, "login", phone).Scan(&captcha.ID, &captcha.Code)
+	if err != nil {
+		fmt.Printf("scan failed, err:%v\n", err)
+		c.JSON(http.StatusOK, gin.H{
+			"code":    501,
+			"message": "验证码错误，登录失败",
+		})
+		return
+	}
+
+	if vcode != captcha.Code {
+		c.JSON(http.StatusOK, gin.H{
+			"code":    502,
+			"message": "验证码错误，登录失败",
+		})
+		return
+	}
+
+	nowTime := time.Now().Format("2006-01-02 15:04:05")
+
+	var user User
+	sqlStr = "select id,phone from tt_user where phone=? and status=0 order by id desc limit 1"
+	err = db.QueryRow(sqlStr, phone).Scan(&user.ID, &user.Phone)
+	if err != nil {
+		fmt.Printf("query row and scan failed, err:%v\n", err)
+		sqlStr = "insert into tt_user(phone, status, created_at, updated_at)"
+		sqlStr += "values (?,?,?,?)"
+		ret, err := db.Exec(sqlStr, phone, 0, nowTime, nowTime)
+		if err != nil {
+			c.JSON(http.StatusOK, gin.H{
+				"code":    503,
+				"message": "登录失败: 创建用户失败",
+			})
+			return
+		}
+		theID, err := ret.LastInsertId() // 新插入数据的id
+		if err != nil {
+			fmt.Printf("get lastinsert ID failed, err:%v\n", err)
+			c.JSON(http.StatusOK, gin.H{
+				"code":    503,
+				"message": "登录失败: 创建用户失败",
+			})
+			return
+		}
+		user.ID = theID
+	}
+
 	rand.Seed(time.Now().UnixNano())
 	loginResult.Token = randomString(32)
+
+	sqlStr = "update tt_user set token=?,updated_at=? where id=?"
+	ret, err := db.Exec(sqlStr, loginResult.Token, nowTime, user.ID)
+	if err != nil {
+		fmt.Printf("update failed, err:%v\n", err)
+		c.JSON(http.StatusOK, gin.H{
+			"code":    503,
+			"message": "登录失败: 创建token失败",
+		})
+		return
+	}
+	n, err := ret.RowsAffected() // 操作影响的行数
+	if err != nil || n <= 0 {
+		fmt.Printf("get RowsAffected failed, err:%v\n", err)
+		c.JSON(http.StatusOK, gin.H{
+			"code":    504,
+			"message": "登录失败: 创建token失败",
+		})
+		return
+	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"code":    0,
 		"message": "success",
