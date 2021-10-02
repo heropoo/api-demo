@@ -125,6 +125,17 @@ func handleLogin(c *gin.Context) {
 
 	nowTime := time.Now().Format("2006-01-02 15:04:05")
 
+	sqlStr = "update tt_sms_captcha set status=?,updated_at=? where id=?"
+	_, err = db.Exec(sqlStr, -1, nowTime, captcha.ID)
+	if err != nil {
+		fmt.Printf("update failed, err:%v\n", err)
+		c.JSON(http.StatusOK, gin.H{
+			"code":    5022,
+			"message": "验证码错误，登录失败",
+		})
+		return
+	}
+
 	var user User
 	sqlStr = "select id,phone from tt_user where phone=? and status=0 order by id desc limit 1"
 	err = db.QueryRow(sqlStr, phone).Scan(&user.ID, &user.Phone)
