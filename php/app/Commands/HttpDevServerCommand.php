@@ -13,7 +13,7 @@ class HttpDevServerCommand
     public function run()
     {
         echo 'A http server started on http://127.0.0.1:8000/' . PHP_EOL;
-        $public_path = realpath(\App::$instance->getRootPath() . '/public');
+        $public_path = realpath(\App::$instance->getRootPath() . '/../public');
         exec("php -S 127.0.0.1:8000 -t $public_path");
         return 0;
     }

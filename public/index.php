@@ -5,9 +5,9 @@
  * Time: 20:30
  */
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../php/vendor/autoload.php';
 
 use Moon\Application;
 
-$app = new Application(dirname(__DIR__));
+$app = new Application(dirname(__DIR__).'/php');
 $app->run();
