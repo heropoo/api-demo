@@ -30,5 +30,5 @@ func main() {
 	router.POST("/api/login-captcha", handleGetLoginCaptcha)
 	router.POST("/api/login", handleLogin)
 
-	router.Run(":8001") // listen on 0.0.0.0:8000
+	router.Run("127.0.0.1:8001")
 }
