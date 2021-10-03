@@ -3,7 +3,6 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -33,8 +32,8 @@ type User struct {
 // var db *sql.DB
 
 func getDB() (*sql.DB, error) {
-	current_dir, _ := os.Getwd()
-	config, _ := getConfig(current_dir + "./config.yaml")
+	//current_dir, _ := os.Getwd()
+	config, _ := getConfig("./config.yaml")
 
 	dsn := config.DB.Username + ":" + config.DB.Password + "@tcp(" + config.DB.Host + ":" + fmt.Sprint(config.DB.Port) + ")/" + config.DB.DBName + "?charset=utf8mb4&parseTime=True"
 	//fmt.Println(dsn)
