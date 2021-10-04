@@ -206,7 +206,8 @@ func getLoginCaptcha(phone string) (CaptchaData, error) {
 		return captcha, errors.New("请输入正确的手机号码")
 	}
 
-	captcha.Vcode = rand.Intn(99999) + 100000
+	rand.Seed(time.Now().UnixNano())
+	captcha.Vcode = rand.Intn(899999) + 100000
 	captcha.Phone = phone
 	return captcha, nil
 }
