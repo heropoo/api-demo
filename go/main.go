@@ -27,6 +27,10 @@ func main() {
 		})
 	})
 
+	router.GET("/test", func(c *gin.Context) {
+		c.String(http.StatusOK, "test 123")
+	})
+
 	router.POST("/api/login-captcha", handleGetLoginCaptcha)
 	router.POST("/api/login", handleLogin)
 
