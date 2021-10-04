@@ -44,7 +44,7 @@ func handleGetLoginCaptcha(c *gin.Context) {
 		return
 	}
 
-	sqlStr := "insert into tt_sms_captcha(type, phone, code, status, created_at, updated_at)"
+	sqlStr := "insert into sms_captcha(type, phone, code, status, created_at, updated_at)"
 	sqlStr += "values (?,?,?,?,?,?)"
 	nowTime := time.Now().Format("2006-01-02 15:04:05")
 	_, err = db.Exec(sqlStr, "login", phone, captcha.Vcode, 0, nowTime, nowTime)
@@ -104,7 +104,7 @@ func handleLogin(c *gin.Context) {
 
 	var captcha SmsCaptcha
 
-	sqlStr := "select id,code from tt_sms_captcha where type=? and phone=? and status=0 order by id desc limit 1"
+	sqlStr := "select id,code from sms_captcha where type=? and phone=? and status=0 order by id desc limit 1"
 	err = db.QueryRow(sqlStr, "login", phone).Scan(&captcha.ID, &captcha.Code)
 	if err != nil {
 		fmt.Printf("scan failed, err:%v\n", err)
@@ -125,7 +125,7 @@ func handleLogin(c *gin.Context) {
 
 	nowTime := time.Now().Format("2006-01-02 15:04:05")
 
-	sqlStr = "update tt_sms_captcha set status=?,updated_at=? where id=?"
+	sqlStr = "update sms_captcha set status=?,updated_at=? where id=?"
 	_, err = db.Exec(sqlStr, -1, nowTime, captcha.ID)
 	if err != nil {
 		fmt.Printf("update failed, err:%v\n", err)
@@ -137,11 +137,11 @@ func handleLogin(c *gin.Context) {
 	}
 
 	var user User
-	sqlStr = "select id,phone from tt_user where phone=? and status=0 order by id desc limit 1"
+	sqlStr = "select id,phone from user where phone=? and status=0 order by id desc limit 1"
 	err = db.QueryRow(sqlStr, phone).Scan(&user.ID, &user.Phone)
 	if err != nil {
 		fmt.Printf("query row and scan failed, err:%v\n", err)
-		sqlStr = "insert into tt_user(phone, status, created_at, updated_at)"
+		sqlStr = "insert into user(phone, status, created_at, updated_at)"
 		sqlStr += "values (?,?,?,?)"
 		ret, err := db.Exec(sqlStr, phone, 0, nowTime, nowTime)
 		if err != nil {
@@ -166,7 +166,7 @@ func handleLogin(c *gin.Context) {
 	rand.Seed(time.Now().UnixNano())
 	loginResult.Token = randomString(32)
 
-	sqlStr = "update tt_user set token=?,updated_at=? where id=?"
+	sqlStr = "update user set token=?,last_login_at=? where id=?"
 	ret, err := db.Exec(sqlStr, loginResult.Token, nowTime, user.ID)
 	if err != nil {
 		fmt.Printf("update failed, err:%v\n", err)

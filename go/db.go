@@ -18,14 +18,15 @@ type SmsCaptcha struct {
 }
 
 type User struct {
-	ID        int64  `db:"id"`
-	Username  string `db:"username"`
-	Phone     string `db:"phone"`
-	Avatar    string `db:"avatar"`
-	Token     string `db:"token"`
-	Status    int    `db:"status"`
-	CreatedAt string `db:"created_at"`
-	UpdatedAt string `db:"updated_at"`
+	ID          int64  `db:"id"`
+	Username    string `db:"username"`
+	Phone       string `db:"phone"`
+	Avatar      string `db:"avatar"`
+	LastLoginAt string `db:"last_login_at"`
+	Token       string `db:"token"`
+	Status      int    `db:"status"`
+	CreatedAt   string `db:"created_at"`
+	UpdatedAt   string `db:"updated_at"`
 }
 
 // // 定义一个全局对象db
@@ -52,12 +53,12 @@ func getDB() (*sql.DB, error) {
 	return db, nil
 }
 
-type QueryCondition struct {
-	Where  string
-	Params []string
-}
+// type QueryCondition struct {
+// 	Where  string
+// 	Params []string
+// }
 
-//TODO
-func queryOne() {
+// //TODO
+// func queryOne() {
 
-}
+// }

@@ -16,7 +16,7 @@ return [
             'username' => env('DB_USER', 'root'),
             'password' => env('DB_PWD', ''),
             'charset' => 'utf8mb4',
-            'tablePrefix' => 'tt_',
+            'tablePrefix' => '',
             'emulatePrepares' => false,
             'options' => [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
