@@ -56,6 +56,7 @@ func handleGetLoginCaptcha(c *gin.Context) {
 		})
 		return
 	}
+
 	// lastInsertId, err := ret.LastInsertId() // 新插入数据的id
 	// if err != nil {
 	// 	fmt.Printf("get lastinsert ID failed, err:%v\n", err)
