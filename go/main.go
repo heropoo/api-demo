@@ -1,9 +1,10 @@
 package main
 
 import (
-	//"log"
-
+	"fmt"
 	"net/http"
+	"os"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 
@@ -12,6 +13,11 @@ import (
 )
 
 func main() {
+
+	pid := os.Getpid()
+	fmt.Println("pid:", pid)
+	savePidfile(pid, "./api-demo.pid")
+
 	router := gin.Default()
 
 	router.GET("/", func(c *gin.Context) {
@@ -35,4 +41,8 @@ func main() {
 	router.POST("/api/login", handleLogin)
 
 	router.Run("127.0.0.1:8001")
+}
+
+func savePidfile(pid int, filename string) error {
+	return file_put_contents(filename, strconv.Itoa(pid))
 }
