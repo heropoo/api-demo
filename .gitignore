@@ -6,3 +6,4 @@ tmp/
 api-demo
 *.exe
 *.pid
+node_modules/

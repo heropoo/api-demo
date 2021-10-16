@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/nano/Projects/www/github/api-demo'
+cd go && go build
+cd ..
+make: Leaving directory `/Users/nano/Projects/www/github/api-demo'
+ 
