@@ -19,3 +19,5 @@ $router->get('/user', 'UserController::index');
 
 $router->post('/login-captcha', 'LoginController::loginCaptcha');
 $router->post('/login', 'LoginController::login');
+
+$router->get('/icon-list', 'TestController::iconList');
