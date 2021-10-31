@@ -7,3 +7,4 @@ api-demo
 *.exe
 *.pid
 node_modules/
+.DS_Store
