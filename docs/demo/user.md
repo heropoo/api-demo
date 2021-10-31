@@ -45,7 +45,7 @@
 
 ### 退出
 * 请求方式 `GET`
-* 请求地址 `/api/login`
+* 请求地址 `/api/logout`
 * 用途 
 * 请求参数 
 * 返回结果
@@ -59,7 +59,7 @@
 
 ### 修改登录密码
 * 请求方式 `POST`
-* 请求地址 `http://api.example.com/user/change-pwd`
+* 请求地址 `/api/user/change-pwd`
 * 用途 
 * 请求参数 
 
@@ -73,8 +73,6 @@
 {
     "code": 0,
     "message": "修改成功",
-    "data": {
-        "item": true
-    }
+    "data": {}
 }
 ```
