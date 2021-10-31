@@ -24,7 +24,7 @@ class TestController
         return [
             'code' => 0,
             'message' => 'success',
-            'icon_list' => $icon_list
+            'data'=>['icon_list' => $icon_list]
         ];
     }
 }
